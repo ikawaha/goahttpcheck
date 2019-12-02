@@ -12,6 +12,8 @@ This makes it possible to test endpoints using ivpusic/httpcheck.
 
 # Example
 
+see. https://github.com/ikawaha/goahttpcheck/blob/master/testdata/calc_test.go
+
 **Design**
 
 ```go
