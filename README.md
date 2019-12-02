@@ -64,4 +64,4 @@ func TestCalcsrvc_Add(t *testing.T) {
 
 ---
 
-MIT
+License MIT
