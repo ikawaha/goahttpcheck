@@ -20,10 +20,14 @@ jobs:
       run: |
         go get -u goa.design/goa/v3/...
 
-    - name: Test
-      run: go build -v .
     - name: Build
+      run: go build -v .
+
+    - name: Test
+      run: go test ./...
+
+    - name: Example test
       run: |
         cd testdata
-        goa gen calc/design
+        $GOPATH/bin/goa gen calc/design
         go test ./...
