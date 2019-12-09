@@ -15,10 +15,11 @@ type (
 	decoder      = func(*http.Request) goahttp.Decoder
 	encoder      = func(context.Context, http.ResponseWriter) goahttp.Encoder
 	errorHandler = func(context.Context, http.ResponseWriter, error)
+	formatter    = func(error) goahttp.Statuser
 	middleware   = func(http.Handler) http.Handler
 
 	// HandlerBuilder represents the goa http handler builder.
-	HandlerBuilder func(goa.Endpoint, goahttp.Muxer, decoder, encoder, errorHandler) http.Handler
+	HandlerBuilder func(goa.Endpoint, goahttp.Muxer, decoder, encoder, errorHandler, formatter) http.Handler
 	// HandlerMounter represents the goa http handler mounter.
 	HandlerMounter func(goahttp.Muxer, http.Handler)
 )
@@ -30,6 +31,7 @@ type APIChecker struct {
 	Decoder      decoder
 	Encoder      encoder
 	ErrorHandler errorHandler
+	Formatter    formatter
 }
 
 // Option represents options for API checker.
@@ -82,7 +84,7 @@ func New(options ...Option) *APIChecker {
 
 // Mount mounts the endpoint handler.
 func (c *APIChecker) Mount(builder HandlerBuilder, mounter HandlerMounter, endpoint goa.Endpoint) {
-	handler := builder(endpoint, c.Mux, c.Decoder, c.Encoder, c.ErrorHandler)
+	handler := builder(endpoint, c.Mux, c.Decoder, c.Encoder, c.ErrorHandler, c.Formatter)
 	mounter(c.Mux, handler)
 }
 
