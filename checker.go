@@ -65,6 +65,13 @@ func ErrorHandler(eh errorHandler) Option {
 	}
 }
 
+// Formatter sets the error handler.
+func Formatter(fm formatter) Option {
+	return func(c *APIChecker) {
+		c.Formatter = fm
+	}
+}
+
 // New constructs API checker.
 func New(options ...Option) *APIChecker {
 	ret := &APIChecker{
