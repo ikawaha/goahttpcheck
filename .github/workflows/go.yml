@@ -17,6 +17,8 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Get dependencies
+      env:
+        GOPATH: /home/runner/work/
       run: |
         go get -u goa.design/goa/v3/...
 
