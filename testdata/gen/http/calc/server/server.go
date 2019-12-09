@@ -40,21 +40,27 @@ type MountPoint struct {
 	Pattern string
 }
 
-// New instantiates HTTP handlers for all the calc service endpoints.
+// New instantiates HTTP handlers for all the calc service endpoints using the
+// provided encoder and decoder. The handlers are mounted on the given mux
+// using the HTTP verb and path defined in the design. errhandler is called
+// whenever a response fails to be encoded. formatter is used to format errors
+// returned by the service methods prior to encoding. Both errhandler and
+// formatter are optional and can be nil.
 func New(
 	e *calc.Endpoints,
 	mux goahttp.Muxer,
-	dec func(*http.Request) goahttp.Decoder,
-	enc func(context.Context, http.ResponseWriter) goahttp.Encoder,
-	eh func(context.Context, http.ResponseWriter, error),
+	decoder func(*http.Request) goahttp.Decoder,
+	encoder func(context.Context, http.ResponseWriter) goahttp.Encoder,
+	errhandler func(context.Context, http.ResponseWriter, error),
+	formatter func(err error) goahttp.Statuser,
 ) *Server {
 	return &Server{
 		Mounts: []*MountPoint{
 			{"Add", "GET", "/add/{a}/{b}"},
 			{"Div", "GET", "/div/{a}/{b}"},
 		},
-		Add: NewAddHandler(e.Add, mux, dec, enc, eh),
-		Div: NewDivHandler(e.Div, mux, dec, enc, eh),
+		Add: NewAddHandler(e.Add, mux, decoder, encoder, errhandler, formatter),
+		Div: NewDivHandler(e.Div, mux, decoder, encoder, errhandler, formatter),
 	}
 }
 
@@ -90,14 +96,15 @@ func MountAddHandler(mux goahttp.Muxer, h http.Handler) {
 func NewAddHandler(
 	endpoint goa.Endpoint,
 	mux goahttp.Muxer,
-	dec func(*http.Request) goahttp.Decoder,
-	enc func(context.Context, http.ResponseWriter) goahttp.Encoder,
-	eh func(context.Context, http.ResponseWriter, error),
+	decoder func(*http.Request) goahttp.Decoder,
+	encoder func(context.Context, http.ResponseWriter) goahttp.Encoder,
+	errhandler func(context.Context, http.ResponseWriter, error),
+	formatter func(err error) goahttp.Statuser,
 ) http.Handler {
 	var (
-		decodeRequest  = DecodeAddRequest(mux, dec)
-		encodeResponse = EncodeAddResponse(enc)
-		encodeError    = goahttp.ErrorEncoder(enc)
+		decodeRequest  = DecodeAddRequest(mux, decoder)
+		encodeResponse = EncodeAddResponse(encoder)
+		encodeError    = goahttp.ErrorEncoder(encoder, formatter)
 	)
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := context.WithValue(r.Context(), goahttp.AcceptTypeKey, r.Header.Get("Accept"))
@@ -106,7 +113,7 @@ func NewAddHandler(
 		payload, err := decodeRequest(r)
 		if err != nil {
 			if err := encodeError(ctx, w, err); err != nil {
-				eh(ctx, w, err)
+				errhandler(ctx, w, err)
 			}
 			return
 		}
@@ -115,12 +122,12 @@ func NewAddHandler(
 
 		if err != nil {
 			if err := encodeError(ctx, w, err); err != nil {
-				eh(ctx, w, err)
+				errhandler(ctx, w, err)
 			}
 			return
 		}
 		if err := encodeResponse(ctx, w, res); err != nil {
-			eh(ctx, w, err)
+			errhandler(ctx, w, err)
 		}
 	})
 }
@@ -142,14 +149,15 @@ func MountDivHandler(mux goahttp.Muxer, h http.Handler) {
 func NewDivHandler(
 	endpoint goa.Endpoint,
 	mux goahttp.Muxer,
-	dec func(*http.Request) goahttp.Decoder,
-	enc func(context.Context, http.ResponseWriter) goahttp.Encoder,
-	eh func(context.Context, http.ResponseWriter, error),
+	decoder func(*http.Request) goahttp.Decoder,
+	encoder func(context.Context, http.ResponseWriter) goahttp.Encoder,
+	errhandler func(context.Context, http.ResponseWriter, error),
+	formatter func(err error) goahttp.Statuser,
 ) http.Handler {
 	var (
-		decodeRequest  = DecodeDivRequest(mux, dec)
-		encodeResponse = EncodeDivResponse(enc)
-		encodeError    = EncodeDivError(enc)
+		decodeRequest  = DecodeDivRequest(mux, decoder)
+		encodeResponse = EncodeDivResponse(encoder)
+		encodeError    = EncodeDivError(encoder, formatter)
 	)
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := context.WithValue(r.Context(), goahttp.AcceptTypeKey, r.Header.Get("Accept"))
@@ -158,7 +166,7 @@ func NewDivHandler(
 		payload, err := decodeRequest(r)
 		if err != nil {
 			if err := encodeError(ctx, w, err); err != nil {
-				eh(ctx, w, err)
+				errhandler(ctx, w, err)
 			}
 			return
 		}
@@ -167,12 +175,12 @@ func NewDivHandler(
 
 		if err != nil {
 			if err := encodeError(ctx, w, err); err != nil {
-				eh(ctx, w, err)
+				errhandler(ctx, w, err)
 			}
 			return
 		}
 		if err := encodeResponse(ctx, w, res); err != nil {
-			eh(ctx, w, err)
+			errhandler(ctx, w, err)
 		}
 	})
 }
