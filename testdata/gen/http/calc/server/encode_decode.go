@@ -114,8 +114,8 @@ func DecodeDivRequest(mux goahttp.Muxer, decoder func(*http.Request) goahttp.Dec
 
 // EncodeDivError returns an encoder for errors returned by the div calc
 // endpoint.
-func EncodeDivError(encoder func(context.Context, http.ResponseWriter) goahttp.Encoder) func(context.Context, http.ResponseWriter, error) error {
-	encodeError := goahttp.ErrorEncoder(encoder)
+func EncodeDivError(encoder func(context.Context, http.ResponseWriter) goahttp.Encoder, formatter func(err error) goahttp.Statuser) func(context.Context, http.ResponseWriter, error) error {
+	encodeError := goahttp.ErrorEncoder(encoder, formatter)
 	return func(ctx context.Context, w http.ResponseWriter, v error) error {
 		en, ok := v.(ErrorNamer)
 		if !ok {
@@ -125,7 +125,12 @@ func EncodeDivError(encoder func(context.Context, http.ResponseWriter) goahttp.E
 		case "zero_division":
 			res := v.(*goa.ServiceError)
 			enc := encoder(ctx, w)
-			body := NewDivZeroDivisionResponseBody(res)
+			var body interface{}
+			if formatter != nil {
+				body = formatter(res)
+			} else {
+				body = NewDivZeroDivisionResponseBody(res)
+			}
 			w.Header().Set("goa-error", "zero_division")
 			w.WriteHeader(http.StatusBadRequest)
 			return enc.Encode(body)
