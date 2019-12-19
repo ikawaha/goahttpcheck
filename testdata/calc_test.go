@@ -19,7 +19,7 @@ func TestCalcsrvc_Add(t *testing.T) {
 	var logger log.Logger
 	checker.Mount(server.NewAddHandler, server.MountAddHandler, calc.NewAddEndpoint(NewCalc(&logger)))
 
-	// see. https://github.com/ivpusic/httpcheck
+	// see. https://github.com/ikawaha/httpcheck
 	checker.Test(t, http.MethodGet, "/add/1/2").
 		Check().
 		HasStatus(http.StatusOK).
@@ -41,7 +41,7 @@ func TestCalcsrvc_Div(t *testing.T) {
 	var logger log.Logger
 	checker.Mount(server.NewDivHandler, server.MountDivHandler, calc.NewDivEndpoint(NewCalc(&logger)))
 
-	// see. https://github.com/ivpusic/httpcheck
+	// see. https://github.com/ikawaha/httpcheck
 	checker.Test(t, "GET", "/div/1/0").
 		Check().
 		HasStatus(http.StatusBadRequest).

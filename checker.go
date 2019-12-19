@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/ivpusic/httpcheck"
+	"github.com/ikawaha/httpcheck"
 	goahttp "goa.design/goa/v3/http"
 	goa "goa.design/goa/v3/pkg"
 )
@@ -90,8 +90,11 @@ func New(options ...Option) *APIChecker {
 }
 
 // Mount mounts the endpoint handler.
-func (c *APIChecker) Mount(builder HandlerBuilder, mounter HandlerMounter, endpoint goa.Endpoint) {
+func (c *APIChecker) Mount(builder HandlerBuilder, mounter HandlerMounter, endpoint goa.Endpoint, middlewares ...middleware) {
 	handler := builder(endpoint, c.Mux, c.Decoder, c.Encoder, c.ErrorHandler, c.Formatter)
+	for _, v := range middlewares {
+		handler = v(handler)
+	}
 	mounter(c.Mux, handler)
 }
 
@@ -101,12 +104,11 @@ func (c *APIChecker) Use(middleware func(http.Handler) http.Handler) {
 }
 
 // Test returns a http checker that tests the endpoint.
-// see. https://github.com/ivpusic/httpcheck/
+// see. https://github.com/ikawaha/httpcheck/
 func (c APIChecker) Test(t *testing.T, method, path string) *httpcheck.Checker {
 	var handler http.Handler = c.Mux
 	for _, v := range c.Middleware {
 		handler = v(handler)
 	}
-	checker := httpcheck.New(t, handler)
-	return checker.Test(method, path)
+	return httpcheck.New(handler).Test(t, method, path)
 }
