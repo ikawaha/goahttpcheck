@@ -45,8 +45,8 @@ github.com/google/uuid v1.1.1/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+
 github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/gorilla/websocket v1.4.1 h1:q7AeDBpnBk8AogcD4DSag/Ukw/KV+YhzLj2bP5HvKCM=
 github.com/gorilla/websocket v1.4.1/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
-github.com/ikawaha/httpcheck v1.1.0 h1:q0YHw9fbZtPQ47tUOPDtawIoMxcUB3T8SFEsD3ip08A=
-github.com/ikawaha/httpcheck v1.1.0/go.mod h1:eYUWSdmssaYCdUzcOUe8NMF0vgr4MKq7Iqbb3eXtpxI=
+github.com/ikawaha/httpcheck v1.2.0 h1:7ylY60/QPNpLnMuqywIQ9gQdpJ/phRjga2L9SHZksuE=
+github.com/ikawaha/httpcheck v1.2.0/go.mod h1:eYUWSdmssaYCdUzcOUe8NMF0vgr4MKq7Iqbb3eXtpxI=
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
 github.com/kr/pretty v0.1.0 h1:L/CwN0zerZDmRFUapSPitk6f+Q3+0za1rQkzVuMiMFI=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
