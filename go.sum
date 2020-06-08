@@ -89,6 +89,8 @@ github.com/ikawaha/httpcheck v1.2.0 h1:7ylY60/QPNpLnMuqywIQ9gQdpJ/phRjga2L9SHZks
 github.com/ikawaha/httpcheck v1.2.0/go.mod h1:eYUWSdmssaYCdUzcOUe8NMF0vgr4MKq7Iqbb3eXtpxI=
 github.com/ikawaha/httpcheck v1.2.1 h1:O1Wc6hZjW2pAaGaDeG/ittUFdty6cghGHwKAJILVOk4=
 github.com/ikawaha/httpcheck v1.2.1/go.mod h1:1R/3f1YENKsR2JDx7skHsPkamplUpx47WuXs2Ytu9j8=
+github.com/ikawaha/httpcheck v1.2.2 h1:RoLqPAvk1zGNWOCkDkQYDDl/sTBLZNZL1MibrQofhz8=
+github.com/ikawaha/httpcheck v1.2.2/go.mod h1:kYjq08gmh7mGOcHm5bK2tsOXUk+J6/67/dgjQKGj3hc=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/joho/godotenv v1.3.0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqxOKXbg=
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
@@ -146,6 +148,8 @@ github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJy
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/stretchr/testify v1.6.0 h1:jlIyCplCJFULU/01vCkhKuTyc3OorI3bJFuw6obfgho=
 github.com/stretchr/testify v1.6.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
+github.com/stretchr/testify v1.6.1 h1:hDPOHmpOpP40lSULcqw7IrRb/u7w6RpDC9399XyoNd0=
+github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/tidwall/pretty v1.0.0/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=
 github.com/xdg/scram v0.0.0-20180814205039-7eeb5667e42c/go.mod h1:lB8K/P019DLNhemzwFU4jHLhdvlE6uDZjXFejJXr49I=
 github.com/xdg/stringprep v0.0.0-20180714160509-73f8eece6fdc/go.mod h1:Jhud4/sHMO4oL310DaZAKk9ZaJ08SJfe+sJh0HrGL1Y=
