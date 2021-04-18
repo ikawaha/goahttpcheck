@@ -67,7 +67,7 @@ func TestCalcsrvc_Add(t *testing.T) {
 ```
 
 
-**Blog**: http://ikawaha.hateblo.jp/entry/2019/12/03/154521
+**Blog**: https://zenn.dev/ikawaha/articles/hatena-20191203-154521
 
 ---
 
