@@ -39,4 +39,4 @@ jobs:
           goa version
           goa gen calc/example
           go test -v ./...
-        working-directory: src/github.com/ikawaha/httpcheck
+        working-directory: src/github.com/ikawaha/goahttpcheck
