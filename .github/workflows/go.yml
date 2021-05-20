@@ -34,7 +34,7 @@ jobs:
       - name: Test
         env:
           GO111MODULE: on
-          GOPATH: 
+          GOPATH:
         run: |
           go test -v ./...
           cd testdata

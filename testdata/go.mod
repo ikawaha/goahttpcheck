@@ -1,6 +1,6 @@
 module calc
 
-go 1.13
+go 1.16
 
 replace github.com/ikawaha/goahttpcheck => ../
 
