@@ -35,6 +35,7 @@ jobs:
         run: |
           go test -v ./...
           cd testdata
+          go mod tidy
           go build -o goa goa.design/goa/v3/cmd/goa
           pwd
           ls
