@@ -32,6 +32,8 @@ jobs:
         working-directory: src/github.com/ikawaha/goahttpcheck
 
       - name: Test
+        env:
+          GO111MODULE: on
         run: |
           go test -v ./...
           cd testdata
