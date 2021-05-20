@@ -36,6 +36,8 @@ jobs:
           go test -v ./...
           cd testdata
           go build -o goa goa.design/goa/v3/cmd/goa
+          pwd
+          ls
           ./goa version
           ./goa gen calc/example
           go test -v ./...
