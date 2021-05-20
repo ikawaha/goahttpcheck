@@ -105,7 +105,7 @@ func (c *APIChecker) Use(middleware func(http.Handler) http.Handler) {
 
 // Test returns a http checker that tests the endpoint.
 // see. https://github.com/ikawaha/httpcheck/
-func (c APIChecker) Test(t *testing.T, method, path string) *httpcheck.Checker {
+func (c APIChecker) Test(t *testing.T, method, path string) *httpcheck.Tester {
 	var handler http.Handler = c.Mux
 	for _, v := range c.Middleware {
 		handler = v(handler)
