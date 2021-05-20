@@ -36,7 +36,7 @@ jobs:
           go test -v ./...
           cd testdata
           go build -o goa goa.design/goa/v3/cmd/goa
-          goa version
-          goa gen calc/example
+          ./goa version
+          ./goa gen calc/example
           go test -v ./...
         working-directory: src/github.com/ikawaha/goahttpcheck
