@@ -5,7 +5,7 @@ import (
 	"errors"
 	"log"
 
-	calc "calc/gen/calc"
+	"calc/gen/calc"
 )
 
 // calc service example implementation.
@@ -30,4 +30,9 @@ func (s *calcsrvc) Div(ctx context.Context, p *calc.DivPayload) (res int, err er
 		return 0, calc.MakeZeroDivision(errors.New("zero division error"))
 	}
 	return p.A / p.B, nil
+}
+
+// Redirect implements redirect.
+func (s *calcsrvc) Redirect(ctx context.Context) (err error) {
+	return
 }
