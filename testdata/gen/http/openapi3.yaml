@@ -90,6 +90,15 @@ paths:
                 id: 3F1FKVRR
                 message: Value of ID must be an integer
                 name: bad_request
+  /redirect:
+    get:
+      tags:
+      - calc
+      summary: redirect calc
+      operationId: calc#redirect
+      responses:
+        "307":
+          description: Temporary Redirect response.
 components:
   schemas:
     Error:

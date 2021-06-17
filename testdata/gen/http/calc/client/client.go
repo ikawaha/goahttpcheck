@@ -23,6 +23,10 @@ type Client struct {
 	// Div Doer is the HTTP client used to make requests to the div endpoint.
 	DivDoer goahttp.Doer
 
+	// Redirect Doer is the HTTP client used to make requests to the redirect
+	// endpoint.
+	RedirectDoer goahttp.Doer
+
 	// RestoreResponseBody controls whether the response bodies are reset after
 	// decoding so they can be read again.
 	RestoreResponseBody bool
@@ -45,6 +49,7 @@ func NewClient(
 	return &Client{
 		AddDoer:             doer,
 		DivDoer:             doer,
+		RedirectDoer:        doer,
 		RestoreResponseBody: restoreBody,
 		scheme:              scheme,
 		host:                host,
@@ -86,6 +91,25 @@ func (c *Client) Div() goa.Endpoint {
 		resp, err := c.DivDoer.Do(req)
 		if err != nil {
 			return nil, goahttp.ErrRequestError("calc", "div", err)
+		}
+		return decodeResponse(resp)
+	}
+}
+
+// Redirect returns an endpoint that makes HTTP requests to the calc service
+// redirect server.
+func (c *Client) Redirect() goa.Endpoint {
+	var (
+		decodeResponse = DecodeRedirectResponse(c.decoder, c.RestoreResponseBody)
+	)
+	return func(ctx context.Context, v interface{}) (interface{}, error) {
+		req, err := c.BuildRedirectRequest(ctx, v)
+		if err != nil {
+			return nil, err
+		}
+		resp, err := c.RedirectDoer.Do(req)
+		if err != nil {
+			return nil, goahttp.ErrRequestError("calc", "redirect", err)
 		}
 		return decodeResponse(resp)
 	}

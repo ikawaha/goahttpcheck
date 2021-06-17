@@ -66,6 +66,17 @@ paths:
             $ref: '#/definitions/CalcDivZeroDivisionResponseBody'
       schemes:
       - http
+  /redirect:
+    get:
+      tags:
+      - calc
+      summary: redirect calc
+      operationId: calc#redirect
+      responses:
+        "307":
+          description: Temporary Redirect response.
+      schemes:
+      - http
 definitions:
   CalcDivZeroDivisionResponseBody:
     title: 'Mediatype identifier: application/vnd.goa.error; view=default'
