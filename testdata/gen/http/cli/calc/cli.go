@@ -23,7 +23,7 @@ import (
 //    command (subcommand1|subcommand2|...)
 //
 func UsageCommands() string {
-	return `calc (add|div)
+	return `calc (add|div|redirect)
 `
 }
 
@@ -52,10 +52,13 @@ func ParseEndpoint(
 		calcDivFlags = flag.NewFlagSet("div", flag.ExitOnError)
 		calcDivAFlag = calcDivFlags.String("a", "REQUIRED", "Left operand")
 		calcDivBFlag = calcDivFlags.String("b", "REQUIRED", "Right operand")
+
+		calcRedirectFlags = flag.NewFlagSet("redirect", flag.ExitOnError)
 	)
 	calcFlags.Usage = calcUsage
 	calcAddFlags.Usage = calcAddUsage
 	calcDivFlags.Usage = calcDivUsage
+	calcRedirectFlags.Usage = calcRedirectUsage
 
 	if err := flag.CommandLine.Parse(os.Args[1:]); err != nil {
 		return nil, nil, err
@@ -97,6 +100,9 @@ func ParseEndpoint(
 			case "div":
 				epf = calcDivFlags
 
+			case "redirect":
+				epf = calcRedirectFlags
+
 			}
 
 		}
@@ -128,6 +134,9 @@ func ParseEndpoint(
 			case "div":
 				endpoint = c.Div()
 				data, err = calcc.BuildDivPayload(*calcDivAFlag, *calcDivBFlag)
+			case "redirect":
+				endpoint = c.Redirect()
+				data = nil
 			}
 		}
 	}
@@ -147,6 +156,7 @@ Usage:
 COMMAND:
     add: Add implements add.
     div: Div implements div.
+    redirect: Redirect implements redirect.
 
 Additional help:
     %s calc COMMAND --help
@@ -173,5 +183,15 @@ Div implements div.
 
 Example:
     `+os.Args[0]+` calc div --a 5401762099778430809 --b 1918630006328122782
+`, os.Args[0])
+}
+
+func calcRedirectUsage() {
+	fmt.Fprintf(os.Stderr, `%s [flags] calc redirect
+
+Redirect implements redirect.
+
+Example:
+    `+os.Args[0]+` calc redirect
 `, os.Args[0])
 }

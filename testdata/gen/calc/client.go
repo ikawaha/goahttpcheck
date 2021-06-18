@@ -15,15 +15,17 @@ import (
 
 // Client is the "calc" service client.
 type Client struct {
-	AddEndpoint goa.Endpoint
-	DivEndpoint goa.Endpoint
+	AddEndpoint      goa.Endpoint
+	DivEndpoint      goa.Endpoint
+	RedirectEndpoint goa.Endpoint
 }
 
 // NewClient initializes a "calc" service client given the endpoints.
-func NewClient(add, div goa.Endpoint) *Client {
+func NewClient(add, div, redirect goa.Endpoint) *Client {
 	return &Client{
-		AddEndpoint: add,
-		DivEndpoint: div,
+		AddEndpoint:      add,
+		DivEndpoint:      div,
+		RedirectEndpoint: redirect,
 	}
 }
 
@@ -48,4 +50,10 @@ func (c *Client) Div(ctx context.Context, p *DivPayload) (res int, err error) {
 		return
 	}
 	return ires.(int), nil
+}
+
+// Redirect calls the "redirect" endpoint of the "calc" service.
+func (c *Client) Redirect(ctx context.Context) (err error) {
+	_, err = c.RedirectEndpoint(ctx, nil)
+	return
 }

@@ -15,15 +15,17 @@ import (
 
 // Endpoints wraps the "calc" service endpoints.
 type Endpoints struct {
-	Add goa.Endpoint
-	Div goa.Endpoint
+	Add      goa.Endpoint
+	Div      goa.Endpoint
+	Redirect goa.Endpoint
 }
 
 // NewEndpoints wraps the methods of the "calc" service with endpoints.
 func NewEndpoints(s Service) *Endpoints {
 	return &Endpoints{
-		Add: NewAddEndpoint(s),
-		Div: NewDivEndpoint(s),
+		Add:      NewAddEndpoint(s),
+		Div:      NewDivEndpoint(s),
+		Redirect: NewRedirectEndpoint(s),
 	}
 }
 
@@ -31,6 +33,7 @@ func NewEndpoints(s Service) *Endpoints {
 func (e *Endpoints) Use(m func(goa.Endpoint) goa.Endpoint) {
 	e.Add = m(e.Add)
 	e.Div = m(e.Div)
+	e.Redirect = m(e.Redirect)
 }
 
 // NewAddEndpoint returns an endpoint function that calls the method "add" of
@@ -48,5 +51,13 @@ func NewDivEndpoint(s Service) goa.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		p := req.(*DivPayload)
 		return s.Div(ctx, p)
+	}
+}
+
+// NewRedirectEndpoint returns an endpoint function that calls the method
+// "redirect" of service "calc".
+func NewRedirectEndpoint(s Service) goa.Endpoint {
+	return func(ctx context.Context, req interface{}) (interface{}, error) {
+		return nil, s.Redirect(ctx)
 	}
 }

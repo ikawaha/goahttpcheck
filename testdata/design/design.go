@@ -33,4 +33,11 @@ var _ = Service("calc", func() {
 			Response("zero_division", StatusBadRequest)
 		})
 	})
+
+	Method("redirect", func() {
+		HTTP(func() {
+			GET("/redirect")
+			Redirect("https://localhost/redirect-test", StatusTemporaryRedirect)
+		})
+	})
 })

@@ -20,3 +20,8 @@ func AddCalcPath(a int, b int) string {
 func DivCalcPath(a int, b int) string {
 	return fmt.Sprintf("/div/%v/%v", a, b)
 }
+
+// RedirectCalcPath returns the URL path to the calc service redirect HTTP endpoint.
+func RedirectCalcPath() string {
+	return "/redirect"
+}
