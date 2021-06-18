@@ -158,3 +158,45 @@ func DecodeDivResponse(decoder func(*http.Response) goahttp.Decoder, restoreBody
 		}
 	}
 }
+
+// BuildRedirectRequest instantiates a HTTP request object with method and path
+// set to call the "calc" service "redirect" endpoint
+func (c *Client) BuildRedirectRequest(ctx context.Context, v interface{}) (*http.Request, error) {
+	u := &url.URL{Scheme: c.scheme, Host: c.host, Path: RedirectCalcPath()}
+	req, err := http.NewRequest("GET", u.String(), nil)
+	if err != nil {
+		return nil, goahttp.ErrInvalidURL("calc", "redirect", u.String(), err)
+	}
+	if ctx != nil {
+		req = req.WithContext(ctx)
+	}
+
+	return req, nil
+}
+
+// DecodeRedirectResponse returns a decoder for responses returned by the calc
+// redirect endpoint. restoreBody controls whether the response body should be
+// restored after having been read.
+func DecodeRedirectResponse(decoder func(*http.Response) goahttp.Decoder, restoreBody bool) func(*http.Response) (interface{}, error) {
+	return func(resp *http.Response) (interface{}, error) {
+		if restoreBody {
+			b, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				return nil, err
+			}
+			resp.Body = ioutil.NopCloser(bytes.NewBuffer(b))
+			defer func() {
+				resp.Body = ioutil.NopCloser(bytes.NewBuffer(b))
+			}()
+		} else {
+			defer resp.Body.Close()
+		}
+		switch resp.StatusCode {
+		case http.StatusTemporaryRedirect:
+			return nil, nil
+		default:
+			body, _ := ioutil.ReadAll(resp.Body)
+			return nil, goahttp.ErrInvalidResponse("calc", "redirect", resp.StatusCode, string(body))
+		}
+	}
+}

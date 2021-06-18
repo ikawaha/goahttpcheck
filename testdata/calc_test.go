@@ -60,3 +60,15 @@ func TestCalcsrvc_Div(t *testing.T) {
 			}
 		})
 }
+
+func TestCalcsrvc_Redirect(t *testing.T) {
+	checker := goahttpcheck.New(goahttpcheck.NoRedirect())
+
+	var logger log.Logger
+	checker.Mount(server.NewRedirectHandler, server.MountRedirectHandler, calc.NewRedirectEndpoint(NewCalc(&logger)))
+
+	// see. https://github.com/ikawaha/httpcheck
+	checker.Test(t, "GET", "/redirect").
+		Check().
+		HasStatus(http.StatusTemporaryRedirect)
+}

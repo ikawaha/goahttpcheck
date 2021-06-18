@@ -18,9 +18,10 @@ import (
 
 // Server lists the calc service endpoint HTTP handlers.
 type Server struct {
-	Mounts []*MountPoint
-	Add    http.Handler
-	Div    http.Handler
+	Mounts   []*MountPoint
+	Add      http.Handler
+	Div      http.Handler
+	Redirect http.Handler
 }
 
 // ErrorNamer is an interface implemented by generated error structs that
@@ -58,9 +59,11 @@ func New(
 		Mounts: []*MountPoint{
 			{"Add", "GET", "/add/{a}/{b}"},
 			{"Div", "GET", "/div/{a}/{b}"},
+			{"Redirect", "GET", "/redirect"},
 		},
-		Add: NewAddHandler(e.Add, mux, decoder, encoder, errhandler, formatter),
-		Div: NewDivHandler(e.Div, mux, decoder, encoder, errhandler, formatter),
+		Add:      NewAddHandler(e.Add, mux, decoder, encoder, errhandler, formatter),
+		Div:      NewDivHandler(e.Div, mux, decoder, encoder, errhandler, formatter),
+		Redirect: NewRedirectHandler(e.Redirect, mux, decoder, encoder, errhandler, formatter),
 	}
 }
 
@@ -71,12 +74,14 @@ func (s *Server) Service() string { return "calc" }
 func (s *Server) Use(m func(http.Handler) http.Handler) {
 	s.Add = m(s.Add)
 	s.Div = m(s.Div)
+	s.Redirect = m(s.Redirect)
 }
 
 // Mount configures the mux to serve the calc endpoints.
 func Mount(mux goahttp.Muxer, h *Server) {
 	MountAddHandler(mux, h.Add)
 	MountDivHandler(mux, h.Div)
+	MountRedirectHandler(mux, h.Redirect)
 }
 
 // MountAddHandler configures the mux to serve the "calc" service "add"
@@ -178,5 +183,35 @@ func NewDivHandler(
 		if err := encodeResponse(ctx, w, res); err != nil {
 			errhandler(ctx, w, err)
 		}
+	})
+}
+
+// MountRedirectHandler configures the mux to serve the "calc" service
+// "redirect" endpoint.
+func MountRedirectHandler(mux goahttp.Muxer, h http.Handler) {
+	f, ok := h.(http.HandlerFunc)
+	if !ok {
+		f = func(w http.ResponseWriter, r *http.Request) {
+			h.ServeHTTP(w, r)
+		}
+	}
+	mux.Handle("GET", "/redirect", f)
+}
+
+// NewRedirectHandler creates a HTTP handler which loads the HTTP request and
+// calls the "calc" service "redirect" endpoint.
+func NewRedirectHandler(
+	endpoint goa.Endpoint,
+	mux goahttp.Muxer,
+	decoder func(*http.Request) goahttp.Decoder,
+	encoder func(context.Context, http.ResponseWriter) goahttp.Encoder,
+	errhandler func(context.Context, http.ResponseWriter, error),
+	formatter func(err error) goahttp.Statuser,
+) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := context.WithValue(r.Context(), goahttp.AcceptTypeKey, r.Header.Get("Accept"))
+		ctx = context.WithValue(ctx, goa.MethodKey, "redirect")
+		ctx = context.WithValue(ctx, goa.ServiceKey, "calc")
+		http.Redirect(w, r, "https://localhost/redirect-test", http.StatusTemporaryRedirect)
 	})
 }
