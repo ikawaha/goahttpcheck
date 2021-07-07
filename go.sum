@@ -164,8 +164,8 @@ github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1/go.mod h1:wJfORR
 github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
 github.com/gorilla/websocket v1.4.2 h1:+/TMaTYc4QFitKJxsQ7Yye35DkWvkdLcvGKqM+x0Ufc=
 github.com/gorilla/websocket v1.4.2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
-github.com/ikawaha/httpcheck v1.5.0 h1:y8rhRQ5L0DQ893YuE4QQqMs6BMYCboJ9Cv28TBo2A8s=
-github.com/ikawaha/httpcheck v1.5.0/go.mod h1:9Unts1alW00TEFOAmLU+bb+wSH/uH8PRFsGlEAGAEP8=
+github.com/ikawaha/httpcheck v1.6.0 h1:nwakH4v4DbAfUVAJbUqjgc8/80jrOsvSb+W2eu+TJDk=
+github.com/ikawaha/httpcheck v1.6.0/go.mod h1:9Unts1alW00TEFOAmLU+bb+wSH/uH8PRFsGlEAGAEP8=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/jmespath/go-jmespath v0.4.0/go.mod h1:T8mJZnbsbmF+m6zOOFylbeCJqk5+pHWvzYPziyZiYoo=
 github.com/jmespath/go-jmespath/internal/testify v1.5.1/go.mod h1:L3OGu8Wl2/fWfCI6z80xFu9LTZmf1ZRjMHUOPmWr69U=
