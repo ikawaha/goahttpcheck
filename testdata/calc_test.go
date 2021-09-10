@@ -43,6 +43,8 @@ func TestCalcsrvc_Div(t *testing.T) {
 
 	// see. https://github.com/ikawaha/httpcheck
 	checker.Test(t, "GET", "/div/1/0").
+		WithHeader("Host", "test.example.jp").
+		WithHeader("Test", "test.example.jp").
 		Check().
 		HasStatus(http.StatusBadRequest).
 		Cb(func(r *http.Response) {
