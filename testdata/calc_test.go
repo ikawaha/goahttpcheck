@@ -14,13 +14,13 @@ import (
 	goa "goa.design/goa/v3/pkg"
 )
 
-func TestCalcsrvc_Add(t *testing.T) {
+func TestCalcsrvc_Multiply(t *testing.T) {
 	checker := goahttpcheck.New()
 	var logger log.Logger
-	checker.Mount(server.NewAddHandler, server.MountAddHandler, calc.NewAddEndpoint(NewCalc(&logger)))
+	checker.Mount(server.NewMultiplyHandler, server.MountMultiplyHandler, calc.NewMultiplyEndpoint(NewCalc(&logger)))
 
 	// see. https://github.com/ikawaha/httpcheck
-	checker.Test(t, http.MethodGet, "/add/1/2").
+	checker.Test(t, http.MethodGet, "/multiply/1/2").
 		Check().
 		HasStatus(http.StatusOK).
 		Cb(func(r *http.Response) {
@@ -29,20 +29,20 @@ func TestCalcsrvc_Add(t *testing.T) {
 				t.Fatalf("unexpected error, %v", err)
 			}
 			r.Body.Close()
-			if got, expected := strings.TrimSpace(string(b)), "3"; got != expected {
+			if got, expected := strings.TrimSpace(string(b)), "2"; got != expected {
 				t.Errorf("got %+v, expected %v", b, expected)
 			}
 		})
 }
 
-func TestCalcsrvc_Div(t *testing.T) {
+func TestCalcsrvc_Divide(t *testing.T) {
 	checker := goahttpcheck.New()
 
 	var logger log.Logger
-	checker.Mount(server.NewDivHandler, server.MountDivHandler, calc.NewDivEndpoint(NewCalc(&logger)))
+	checker.Mount(server.NewDivideHandler, server.MountDivideHandler, calc.NewDivideEndpoint(NewCalc(&logger)))
 
 	// see. https://github.com/ikawaha/httpcheck
-	checker.Test(t, "GET", "/div/1/0").
+	checker.Test(t, "GET", "/divide/1/0").
 		WithHeader("Host", "test.example.jp").
 		WithHeader("Test", "test.example.jp").
 		Check().
