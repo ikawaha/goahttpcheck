@@ -19,13 +19,13 @@ func NewCalc(logger *log.Logger) calc.Service {
 	return &calcsrvc{logger}
 }
 
-// Add implements add.
-func (s *calcsrvc) Add(ctx context.Context, p *calc.AddPayload) (res int, err error) {
-	return p.A + p.B, nil
+// Multiply implements multiply.
+func (s *calcsrvc) Multiply(ctx context.Context, p *calc.MultiplyPayload) (res int, err error) {
+	return p.A * p.B, nil
 }
 
-// Div implements div.
-func (s *calcsrvc) Div(ctx context.Context, p *calc.DivPayload) (res int, err error) {
+// Divide implements divide.
+func (s *calcsrvc) Divide(ctx context.Context, p *calc.DividePayload) (res int, err error) {
 	if p.B == 0 {
 		return 0, calc.MakeZeroDivision(errors.New("zero division error"))
 	}
