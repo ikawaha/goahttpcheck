@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/ikawaha/httpcheck v1.6.3
-	goa.design/goa/v3 v3.7.10
+	goa.design/goa/v3 v3.7.12
 )
 
 require (
@@ -12,6 +12,8 @@ require (
 	github.com/dimfeld/httptreemux/v5 v5.4.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/hashicorp/errwrap v1.1.0 // indirect
+	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.8.0 // indirect
