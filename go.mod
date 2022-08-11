@@ -1,6 +1,6 @@
 module github.com/ikawaha/goahttpcheck
 
-go 1.18
+go 1.19
 
 require (
 	github.com/ikawaha/httpcheck v1.6.3
