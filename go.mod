@@ -1,10 +1,10 @@
 module github.com/ikawaha/goahttpcheck
 
-go 1.18
+go 1.19
 
 require (
 	github.com/ikawaha/httpcheck v1.6.3
-	goa.design/goa/v3 v3.7.12
+	goa.design/goa/v3 v3.8.2
 )
 
 require (
