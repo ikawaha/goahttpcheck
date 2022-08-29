@@ -12,8 +12,8 @@ github.com/hashicorp/errwrap v1.1.0 h1:OxrOeh75EUXMY8TBjag2fzXGZ40LB6IKw45YeGUDY
 github.com/hashicorp/errwrap v1.1.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/go-multierror v1.1.1 h1:H5DkEtf6CXdFp0N0Em5UCwQpXMWke8IA0+lD48awMYo=
 github.com/hashicorp/go-multierror v1.1.1/go.mod h1:iw975J/qwKPdAO1clOe2L8331t/9/fmwbPZ6JB6eMoM=
-github.com/ikawaha/httpcheck v1.6.3 h1:bZHJJX7PzIqp8hGg4WWQ5OpGCXvEy1CDLs+sYYlO7Ro=
-github.com/ikawaha/httpcheck v1.6.3/go.mod h1:W+0X+g4VIDpoXpnQXWOJr3JDnKDfhGEn33C6x+PyCZE=
+github.com/ikawaha/httpcheck v1.7.0 h1:7Qeuo/pfySwjbR6jeGTS9X/0K/lyu97Sn2Jx9FpOvWo=
+github.com/ikawaha/httpcheck v1.7.0/go.mod h1:6Y081n0E9wdeSsEd0GZxsNrPhiCsp4poGlcX2BBHJlQ=
 github.com/kr/pretty v0.1.0 h1:L/CwN0zerZDmRFUapSPitk6f+Q3+0za1rQkzVuMiMFI=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
