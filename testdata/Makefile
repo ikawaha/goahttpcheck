@@ -1,16 +1,8 @@
-BINPATH:=$(abspath .)/bin
-
-.PHONY: goa_install
-goa_install:
-	mkdir -p ${BINPATH}
-	go get goa.design/goa/v3/cmd/goa
-	go build -o ${BINPATH}/goa goa.design/goa/v3/cmd/goa
-
 .PHONY: goa_gen
-goa_gen: goa_install
+goa_gen:
 	go mod tidy
-	@goa version
-	${BINPATH}/goa gen calc/design
+	@go run goa.design/goa/v3/cmd/goa version
+	go run goa.design/goa/v3/cmd/goa gen calc/design
 
 .PHONY: test
 test: goa_gen
