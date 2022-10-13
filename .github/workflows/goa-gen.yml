@@ -16,8 +16,11 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version-file: go.mod
-      - run: make goa_gen
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: goa gen
+        run: |
+          make goa_gen
+      - name: commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: goa gen
           branch: ${{ github.head_ref }}
