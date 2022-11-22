@@ -18,7 +18,7 @@ require (
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
-	github.com/ikawaha/httpcheck v1.7.1 // indirect
+	github.com/ikawaha/httpcheck v1.8.0 // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
 	github.com/manveru/faker v0.0.0-20171103152722-9fbc68a78c4d // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
