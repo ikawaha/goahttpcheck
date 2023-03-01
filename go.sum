@@ -25,6 +25,8 @@ github.com/hashicorp/go-multierror v1.1.1 h1:H5DkEtf6CXdFp0N0Em5UCwQpXMWke8IA0+l
 github.com/hashicorp/go-multierror v1.1.1/go.mod h1:iw975J/qwKPdAO1clOe2L8331t/9/fmwbPZ6JB6eMoM=
 github.com/ikawaha/httpcheck v1.8.1 h1:yRYv+MTGjm2XpTpXmSst9XJb+RgNR6gjulqX9M+7Ses=
 github.com/ikawaha/httpcheck v1.8.1/go.mod h1:sFiOSLq6F55K/iG5CGbg8Odm/eDll2veTf3tZMaeIyw=
+github.com/ikawaha/httpcheck v1.8.2 h1:BBUFanbeBa4xauhdNsCdveZv+uX5DGPq6r4QpwP6ORc=
+github.com/ikawaha/httpcheck v1.8.2/go.mod h1:K5tBCuIIufz1MXGqqfXnFEu5FZy2y1bhR/7jDHIvoQ0=
 github.com/jmespath/go-jmespath v0.4.0/go.mod h1:T8mJZnbsbmF+m6zOOFylbeCJqk5+pHWvzYPziyZiYoo=
 github.com/jmespath/go-jmespath/internal/testify v1.5.1/go.mod h1:L3OGu8Wl2/fWfCI6z80xFu9LTZmf1ZRjMHUOPmWr69U=
 github.com/kr/pretty v0.1.0 h1:L/CwN0zerZDmRFUapSPitk6f+Q3+0za1rQkzVuMiMFI=
