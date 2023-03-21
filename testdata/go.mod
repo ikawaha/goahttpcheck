@@ -16,7 +16,7 @@ require (
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20220104163920-15ed2e8cf2bd // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
-	github.com/ikawaha/httpcheck v1.8.2 // indirect
+	github.com/ikawaha/httpcheck v1.9.0 // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
 	github.com/manveru/faker v0.0.0-20171103152722-9fbc68a78c4d // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
