@@ -20,9 +20,9 @@ paths:
                   schema:
                     type: integer
                     description: Left operand
-                    example: 207017106558923967
+                    example: 2965960569464252933
                     format: int64
-                  example: 6001261670528037577
+                  example: 6525775414444532386
                 - name: b
                   in: path
                   description: Right operand
@@ -30,9 +30,9 @@ paths:
                   schema:
                     type: integer
                     description: Right operand
-                    example: 5850431520333673251
+                    example: 5635247262153220700
                     format: int64
-                  example: 1089204046671954241
+                  example: 6595082841550375708
             responses:
                 "200":
                     description: OK response.
@@ -40,9 +40,9 @@ paths:
                         application/json:
                             schema:
                                 type: integer
-                                example: 1016925590796087323
+                                example: 8723986392256123438
                                 format: int64
-                            example: 3833729960400405184
+                            example: 3523480046783923250
                 "400":
                     description: 'zero_division: Bad Request response.'
                     content:
@@ -63,9 +63,9 @@ paths:
                   schema:
                     type: integer
                     description: Left operand
-                    example: 4886963557863946648
+                    example: 3833729960400405184
                     format: int64
-                  example: 6642806206162570878
+                  example: 7617773024289378824
                 - name: b
                   in: path
                   description: Right operand
@@ -73,9 +73,9 @@ paths:
                   schema:
                     type: integer
                     description: Right operand
-                    example: 8723986392256123438
+                    example: 8614350958614154271
                     format: int64
-                  example: 9092197569596372935
+                  example: 4285228716133201605
             responses:
                 "200":
                     description: OK response.
@@ -83,9 +83,9 @@ paths:
                         application/json:
                             schema:
                                 type: integer
-                                example: 5308928064408640979
+                                example: 6642806206162570878
                                 format: int64
-                            example: 2937026320033011362
+                            example: 1232634558296710584
     /redirect:
         get:
             tags:
@@ -95,11 +95,6 @@ paths:
             responses:
                 "307":
                     description: Temporary Redirect response.
-                    content:
-                        application/json:
-                            schema:
-                                type: string
-                                format: binary
 components:
     schemas:
         Error:
@@ -108,7 +103,7 @@ components:
                 fault:
                     type: boolean
                     description: Is the error a server-side fault?
-                    example: true
+                    example: false
                 id:
                     type: string
                     description: ID is a unique identifier for this particular occurrence of the problem.
@@ -124,15 +119,18 @@ components:
                 temporary:
                     type: boolean
                     description: Is the error temporary?
-                    example: true
+                    example: false
                 timeout:
                     type: boolean
                     description: Is the error a timeout?
                     example: true
             example:
-                id: 3F1FKVRR
-                message: Value of ID must be an integer
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
                 name: bad_request
+                temporary: false
+                timeout: false
             required:
                 - name
                 - id
