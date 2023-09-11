@@ -4,13 +4,13 @@ go 1.20
 
 require (
 	github.com/ikawaha/httpcheck v1.9.0
-	goa.design/goa/v3 v3.12.4
+	goa.design/goa/v3 v3.13.0
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/dimfeld/httptreemux/v5 v5.5.0 // indirect
-	github.com/google/uuid v1.3.0 // indirect
+	github.com/go-chi/chi/v5 v5.0.10 // indirect
+	github.com/google/uuid v1.3.1 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
