@@ -3,7 +3,7 @@ module github.com/ikawaha/goahttpcheck
 go 1.20
 
 require (
-	github.com/ikawaha/httpcheck v1.10.0
+	github.com/ikawaha/httpcheck v1.10.1
 	goa.design/goa/v3 v3.14.1
 )
 
