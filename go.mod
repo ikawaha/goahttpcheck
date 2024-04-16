@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/ikawaha/httpcheck v1.12.2
-	goa.design/goa/v3 v3.16.0
+	goa.design/goa/v3 v3.16.1
 )
 
 require (
