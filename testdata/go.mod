@@ -2,8 +2,6 @@ module calc
 
 go 1.21.0
 
-toolchain go1.22.4
-
 replace github.com/ikawaha/goahttpcheck => ../
 
 require (
