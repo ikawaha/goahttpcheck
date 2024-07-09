@@ -3,7 +3,7 @@ module github.com/ikawaha/goahttpcheck
 go 1.20
 
 require (
-	github.com/ikawaha/httpcheck v1.12.2
+	github.com/ikawaha/httpcheck v1.12.3
 	goa.design/goa/v3 v3.17.2
 )
 
@@ -12,8 +12,8 @@ require (
 	github.com/go-chi/chi/v5 v5.1.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
-	github.com/itchyny/gojq v0.12.15 // indirect
-	github.com/itchyny/timefmt-go v0.1.5 // indirect
+	github.com/itchyny/gojq v0.12.16 // indirect
+	github.com/itchyny/timefmt-go v0.1.6 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
