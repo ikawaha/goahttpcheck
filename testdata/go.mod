@@ -1,6 +1,8 @@
 module calc
 
-go 1.19
+go 1.21.0
+
+toolchain go1.22.4
 
 replace github.com/ikawaha/goahttpcheck => ../
 
@@ -15,9 +17,9 @@ require (
 	github.com/go-chi/chi/v5 v5.1.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
-	github.com/ikawaha/httpcheck v1.12.2 // indirect
-	github.com/itchyny/gojq v0.12.15 // indirect
-	github.com/itchyny/timefmt-go v0.1.5 // indirect
+	github.com/ikawaha/httpcheck v1.12.3 // indirect
+	github.com/itchyny/gojq v0.12.16 // indirect
+	github.com/itchyny/timefmt-go v0.1.6 // indirect
 	github.com/manveru/faker v0.0.0-20171103152722-9fbc68a78c4d // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/sergi/go-diff v1.3.1 // indirect
