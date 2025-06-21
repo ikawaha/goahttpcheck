@@ -1,6 +1,7 @@
 module github.com/ikawaha/goahttpcheck
 
-go 1.21.0
+go 1.23.0
+
 toolchain go1.24.1
 
 require (
@@ -10,7 +11,7 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/go-chi/chi/v5 v5.2.1 // indirect
+	github.com/go-chi/chi/v5 v5.2.2 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/itchyny/gojq v0.12.16 // indirect
