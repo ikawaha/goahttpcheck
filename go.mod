@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/ikawaha/httpcheck v1.12.3
-	goa.design/goa/v3 v3.20.0
+	goa.design/goa/v3 v3.20.1
 )
 
 require (
