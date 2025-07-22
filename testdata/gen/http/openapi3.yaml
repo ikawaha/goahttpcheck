@@ -20,9 +20,9 @@ paths:
                   schema:
                     type: integer
                     description: Left operand
-                    example: 2965960569464252933
+                    example: 5635247262153220700
                     format: int64
-                  example: 6525775414444532386
+                  example: 6595082841550375708
                 - name: b
                   in: path
                   description: Right operand
@@ -30,9 +30,9 @@ paths:
                   schema:
                     type: integer
                     description: Right operand
-                    example: 5635247262153220700
+                    example: 3523480046783923250
                     format: int64
-                  example: 6595082841550375708
+                  example: 5487677923305002774
             responses:
                 "200":
                     description: OK response.
@@ -40,9 +40,9 @@ paths:
                         application/json:
                             schema:
                                 type: integer
-                                example: 8723986392256123438
+                                example: 2937026320033011362
                                 format: int64
-                            example: 3523480046783923250
+                            example: 1187293393747494935
                 "400":
                     description: 'zero_division: Bad Request response.'
                     content:
@@ -63,9 +63,9 @@ paths:
                   schema:
                     type: integer
                     description: Left operand
-                    example: 3833729960400405184
+                    example: 8614350958614154271
                     format: int64
-                  example: 7617773024289378824
+                  example: 4285228716133201605
                 - name: b
                   in: path
                   description: Right operand
@@ -73,9 +73,9 @@ paths:
                   schema:
                     type: integer
                     description: Right operand
-                    example: 8614350958614154271
+                    example: 1232634558296710584
                     format: int64
-                  example: 4285228716133201605
+                  example: 2965960569464252933
             responses:
                 "200":
                     description: OK response.
@@ -83,9 +83,9 @@ paths:
                         application/json:
                             schema:
                                 type: integer
-                                example: 6642806206162570878
+                                example: 9092197569596372935
                                 format: int64
-                            example: 1232634558296710584
+                            example: 6525775414444532386
     /redirect:
         get:
             tags:
@@ -123,14 +123,14 @@ components:
                 timeout:
                     type: boolean
                     description: Is the error a timeout?
-                    example: true
+                    example: false
             example:
-                fault: false
+                fault: true
                 id: 123abc
                 message: parameter 'p' must be an integer
                 name: bad_request
                 temporary: false
-                timeout: false
+                timeout: true
             required:
                 - name
                 - id
