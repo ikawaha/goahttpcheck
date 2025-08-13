@@ -101,11 +101,11 @@ definitions:
             temporary:
                 type: boolean
                 description: Is the error temporary?
-                example: false
+                example: true
             timeout:
                 type: boolean
                 description: Is the error a timeout?
-                example: false
+                example: true
         description: divide_zero_division_response_body result type (default view)
         example:
             fault: true

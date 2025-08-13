@@ -8,7 +8,7 @@ replace github.com/ikawaha/goahttpcheck => ../
 
 require (
 	github.com/ikawaha/goahttpcheck v0.0.0-00010101000000-000000000000
-	goa.design/goa/v3 v3.21.1
+	goa.design/goa/v3 v3.21.5
 )
 
 require (
@@ -25,9 +25,9 @@ require (
 	github.com/manveru/faker v0.0.0-20171103152722-9fbc68a78c4d // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.10.0 // indirect
-	golang.org/x/mod v0.24.0 // indirect
-	golang.org/x/sync v0.14.0 // indirect
-	golang.org/x/text v0.25.0 // indirect
-	golang.org/x/tools v0.33.0 // indirect
+	golang.org/x/mod v0.25.0 // indirect
+	golang.org/x/sync v0.15.0 // indirect
+	golang.org/x/text v0.26.0 // indirect
+	golang.org/x/tools v0.34.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
