@@ -3,7 +3,6 @@ package calcapi
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 	"testing"
@@ -16,8 +15,7 @@ import (
 
 func TestCalcsrvc_Multiply(t *testing.T) {
 	checker := goahttpcheck.New()
-	var logger log.Logger
-	checker.Mount(server.NewMultiplyHandler, server.MountMultiplyHandler, calc.NewMultiplyEndpoint(NewCalc(&logger)))
+	checker.Mount(server.NewMultiplyHandler, server.MountMultiplyHandler, calc.NewMultiplyEndpoint(NewCalc()))
 
 	// see. https://github.com/ikawaha/httpcheck
 	checker.Test(t, http.MethodGet, "/multiply/1/2").
@@ -38,8 +36,7 @@ func TestCalcsrvc_Multiply(t *testing.T) {
 func TestCalcsrvc_Divide(t *testing.T) {
 	checker := goahttpcheck.New()
 
-	var logger log.Logger
-	checker.Mount(server.NewDivideHandler, server.MountDivideHandler, calc.NewDivideEndpoint(NewCalc(&logger)))
+	checker.Mount(server.NewDivideHandler, server.MountDivideHandler, calc.NewDivideEndpoint(NewCalc()))
 
 	// see. https://github.com/ikawaha/httpcheck
 	checker.Test(t, "GET", "/divide/1/0").
@@ -66,8 +63,7 @@ func TestCalcsrvc_Divide(t *testing.T) {
 func TestCalcsrvc_Redirect(t *testing.T) {
 	checker := goahttpcheck.New(goahttpcheck.NoRedirect())
 
-	var logger log.Logger
-	checker.Mount(server.NewRedirectHandler, server.MountRedirectHandler, calc.NewRedirectEndpoint(NewCalc(&logger)))
+	checker.Mount(server.NewRedirectHandler, server.MountRedirectHandler, calc.NewRedirectEndpoint(NewCalc()))
 
 	// see. https://github.com/ikawaha/httpcheck
 	checker.Test(t, "GET", "/redirect").
