@@ -3,20 +3,17 @@ package calcapi
 import (
 	"context"
 	"errors"
-	"log"
 
 	"calc/gen/calc"
 )
 
 // calc service example implementation.
 // The example methods log the requests and return zero values.
-type calcsrvc struct {
-	logger *log.Logger
-}
+type calcsrvc struct{}
 
 // NewCalc returns the calc service implementation.
-func NewCalc(logger *log.Logger) calc.Service {
-	return &calcsrvc{logger}
+func NewCalc() calc.Service {
+	return &calcsrvc{}
 }
 
 // Multiply implements multiply.
