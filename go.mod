@@ -4,12 +4,12 @@ go 1.25.0
 
 require (
 	github.com/ikawaha/httpcheck v1.12.5
-	goa.design/goa/v3 v3.28.0
+	goa.design/goa/v3 v3.29.2
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/go-chi/chi/v5 v5.3.0 // indirect
+	github.com/go-chi/chi/v5 v5.3.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/itchyny/gojq v0.12.17 // indirect
