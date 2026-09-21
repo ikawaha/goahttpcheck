@@ -45,7 +45,7 @@ func NewDivideZeroDivision(body *DivideZeroDivisionResponseBody) *goa.ServiceErr
 }
 
 // ValidateDivideZeroDivisionResponseBody runs the validations defined on
-// divide_zero_division_response_body
+// DivideZeroDivisionResponseBody
 func ValidateDivideZeroDivisionResponseBody(body *DivideZeroDivisionResponseBody) (err error) {
 	if body.Name == nil {
 		err = goa.MergeErrors(err, goa.MissingFieldError("name", "body"))
