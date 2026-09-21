@@ -15,12 +15,15 @@ import (
 
 // BuildMultiplyPayload builds the payload for the calc multiply endpoint from
 // CLI flags.
-func BuildMultiplyPayload(calcMultiplyA string, calcMultiplyB string) (*calc.MultiplyPayload, error) {
+func BuildMultiplyPayload(calcMultiplyA *string, calcMultiplyB *string) (*calc.MultiplyPayload, error) {
 	var err error
 	var a int
 	{
+		if calcMultiplyA == nil {
+			return nil, fmt.Errorf("missing required flag --a")
+		}
 		var v int64
-		v, err = strconv.ParseInt(calcMultiplyA, 10, strconv.IntSize)
+		v, err = strconv.ParseInt(*calcMultiplyA, 10, strconv.IntSize)
 		a = int(v)
 		if err != nil {
 			return nil, fmt.Errorf("invalid value for a, must be INT")
@@ -28,8 +31,11 @@ func BuildMultiplyPayload(calcMultiplyA string, calcMultiplyB string) (*calc.Mul
 	}
 	var b int
 	{
+		if calcMultiplyB == nil {
+			return nil, fmt.Errorf("missing required flag --b")
+		}
 		var v int64
-		v, err = strconv.ParseInt(calcMultiplyB, 10, strconv.IntSize)
+		v, err = strconv.ParseInt(*calcMultiplyB, 10, strconv.IntSize)
 		b = int(v)
 		if err != nil {
 			return nil, fmt.Errorf("invalid value for b, must be INT")
@@ -44,12 +50,15 @@ func BuildMultiplyPayload(calcMultiplyA string, calcMultiplyB string) (*calc.Mul
 
 // BuildDividePayload builds the payload for the calc divide endpoint from CLI
 // flags.
-func BuildDividePayload(calcDivideA string, calcDivideB string) (*calc.DividePayload, error) {
+func BuildDividePayload(calcDivideA *string, calcDivideB *string) (*calc.DividePayload, error) {
 	var err error
 	var a int
 	{
+		if calcDivideA == nil {
+			return nil, fmt.Errorf("missing required flag --a")
+		}
 		var v int64
-		v, err = strconv.ParseInt(calcDivideA, 10, strconv.IntSize)
+		v, err = strconv.ParseInt(*calcDivideA, 10, strconv.IntSize)
 		a = int(v)
 		if err != nil {
 			return nil, fmt.Errorf("invalid value for a, must be INT")
@@ -57,8 +66,11 @@ func BuildDividePayload(calcDivideA string, calcDivideB string) (*calc.DividePay
 	}
 	var b int
 	{
+		if calcDivideB == nil {
+			return nil, fmt.Errorf("missing required flag --b")
+		}
 		var v int64
-		v, err = strconv.ParseInt(calcDivideB, 10, strconv.IntSize)
+		v, err = strconv.ParseInt(*calcDivideB, 10, strconv.IntSize)
 		b = int(v)
 		if err != nil {
 			return nil, fmt.Errorf("invalid value for b, must be INT")

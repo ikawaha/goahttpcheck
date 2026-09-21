@@ -29,8 +29,27 @@ func UsageCommands() []string {
 
 // UsageExamples produces an example of a valid invocation of the CLI tool.
 func UsageExamples() string {
-	return os.Args[0] + " " + "calc multiply --a 360622074634248926 --b 8133055152903002499" + "\n" +
+	return os.Args[0] + " " + "calc multiply --a 8789074496583346340 --b 7413121258658775183" + "\n" +
 		""
+}
+
+// cliStringFlag keeps an omitted command-line flag distinct from an explicitly empty flag.
+type cliStringFlag struct {
+	value *string
+}
+
+// String returns the flag text shown by the standard flag package.
+func (f *cliStringFlag) String() string {
+	if f.value == nil {
+		return ""
+	}
+	return *f.value
+}
+
+// Set records that the user supplied the flag, even when value is empty.
+func (f *cliStringFlag) Set(value string) error {
+	f.value = &value
+	return nil
 }
 
 // ParseEndpoint returns the endpoint and payload as specified on the command
@@ -46,15 +65,20 @@ func ParseEndpoint(
 		calcFlags = flag.NewFlagSet("calc", flag.ContinueOnError)
 
 		calcMultiplyFlags = flag.NewFlagSet("multiply", flag.ExitOnError)
-		calcMultiplyAFlag = calcMultiplyFlags.String("a", "REQUIRED", "Left operand")
-		calcMultiplyBFlag = calcMultiplyFlags.String("b", "REQUIRED", "Right operand")
+		calcMultiplyAFlag = new(cliStringFlag)
+		calcMultiplyBFlag = new(cliStringFlag)
 
 		calcDivideFlags = flag.NewFlagSet("divide", flag.ExitOnError)
-		calcDivideAFlag = calcDivideFlags.String("a", "REQUIRED", "Left operand")
-		calcDivideBFlag = calcDivideFlags.String("b", "REQUIRED", "Right operand")
+		calcDivideAFlag = new(cliStringFlag)
+		calcDivideBFlag = new(cliStringFlag)
 
 		calcRedirectFlags = flag.NewFlagSet("redirect", flag.ExitOnError)
 	)
+	calcMultiplyFlags.Var(calcMultiplyAFlag, "a", "Left operand")
+	calcMultiplyFlags.Var(calcMultiplyBFlag, "b", "Right operand")
+	calcDivideFlags.Var(calcDivideAFlag, "a", "Left operand")
+	calcDivideFlags.Var(calcDivideBFlag, "b", "Right operand")
+
 	calcFlags.Usage = calcUsage
 	calcMultiplyFlags.Usage = calcMultiplyUsage
 	calcDivideFlags.Usage = calcDivideUsage
@@ -130,10 +154,10 @@ func ParseEndpoint(
 			switch epn {
 			case "multiply":
 				endpoint = c.Multiply()
-				data, err = calcc.BuildMultiplyPayload(*calcMultiplyAFlag, *calcMultiplyBFlag)
+				data, err = calcc.BuildMultiplyPayload(calcMultiplyAFlag.value, calcMultiplyBFlag.value)
 			case "divide":
 				endpoint = c.Divide()
-				data, err = calcc.BuildDividePayload(*calcDivideAFlag, *calcDivideBFlag)
+				data, err = calcc.BuildDividePayload(calcDivideAFlag.value, calcDivideBFlag.value)
 			case "redirect":
 				endpoint = c.Redirect()
 			}
@@ -175,7 +199,7 @@ func calcMultiplyUsage() {
 
 	fmt.Fprintln(os.Stderr)
 	fmt.Fprintln(os.Stderr, "Example:")
-	fmt.Fprintf(os.Stderr, "    %s %s\n", os.Args[0], "calc multiply --a 360622074634248926 --b 8133055152903002499")
+	fmt.Fprintf(os.Stderr, "    %s %s\n", os.Args[0], "calc multiply --a 8789074496583346340 --b 7413121258658775183")
 }
 
 func calcDivideUsage() {
@@ -195,7 +219,7 @@ func calcDivideUsage() {
 
 	fmt.Fprintln(os.Stderr)
 	fmt.Fprintln(os.Stderr, "Example:")
-	fmt.Fprintf(os.Stderr, "    %s %s\n", os.Args[0], "calc divide --a 4288748512599820841 --b 4212629202012168060")
+	fmt.Fprintf(os.Stderr, "    %s %s\n", os.Args[0], "calc divide --a 7732231999703696438 --b 589374303998851964")
 }
 
 func calcRedirectUsage() {

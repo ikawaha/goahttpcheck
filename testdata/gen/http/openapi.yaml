@@ -38,9 +38,17 @@ paths:
                         type: integer
                         format: int64
                 "400":
-                    description: Bad Request response.
+                    description: 'zero_division: Bad Request response.'
                     schema:
                         $ref: '#/definitions/CalcDivideZeroDivisionResponseBody'
+                    examples:
+                        application/vnd.goa.error:
+                            fault: false
+                            id: 123abc
+                            message: parameter 'p' must be an integer
+                            name: zero_division
+                            temporary: false
+                            timeout: false
             schemes:
                 - http
     /multiply/{a}/{b}:
@@ -110,7 +118,7 @@ definitions:
                 type: boolean
                 description: Is the error a timeout?
                 example: true
-        description: divide_zero_division_response_body result type (default view)
+        description: Error response result type (default view)
         example:
             fault: true
             id: 123abc
